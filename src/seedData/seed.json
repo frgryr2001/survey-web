@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "question": "What is your favorite color?",
+    "questionType": "multipleChoice",
+    "answer": ["Red", "Blue", "Green"]
+  },
+  {
+    "id": 2,
+    "question": "What is your favorite sport?",
+    "questionType": "selectCheckBox",
+    "answer": ["Football", "Basketball", "Baseball", "Soccer", "Hockey"]
+  },
+  {
+    "id": 3,
+    "question": "What is your favorite color?",
+    "questionType": "textInput",
+    "answer": [""]
+  }
+]
