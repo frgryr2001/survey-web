@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { FormControlCustom } from '../components/FormControlCustom';
+
 import SurveyForm from '../components/SurveyForm';
 
 const Survey = () => {

@@ -2,16 +2,12 @@ import { Box, Link, Typography } from '@mui/material';
 import React from 'react';
 import { FormControlCustom } from './FormControlCustom';
 import MultipleSelectCheckmarks from './SelectInput';
-
-// import seedData
-import seedData from '../seedData/seed.json';
 import TextInput from './TextInput';
 import ButtonCustom from './Button';
+import seedData from '../seedData/seed.json';
 
 const SurveyForm = () => {
-  // every 1 question will be a component show in here not show all
   const [questionCount, setQuestionCount] = React.useState<number>(0);
-  const [answer, setAnswer] = React.useState<string[]>([]);
 
   const handleNextQuestion = () => {
     setQuestionCount((prev) => prev + 1);
@@ -21,28 +17,33 @@ const SurveyForm = () => {
     setQuestionCount((prev) => prev - 1);
   };
 
-  // const handleAnswer = (value: string) => {
-  //     setAnswer((prev) => [...prev, value]);
-  // };
-
   return (
     <>
       <Box
         flex={1}
         marginTop={3}
         display={'flex'}
-        justifyContent={'space-between'}
+        justifyContent={questionCount > 0 ? 'space-between' : 'flex-end'}
         alignItems={'center'}
       >
-        <Box>
-          <Link
-            style={{ cursor: 'pointer', textDecoration: 'none', color: '#333' }}
-            onClick={handlePrevQuestion}
-          >
-            {' '}
-            &larr; Back
-          </Link>
-        </Box>
+        {
+          // if questionCount > 0 then show button prev
+          questionCount > 0 && (
+            <Box>
+              <Link
+                style={{
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                  color: '#333',
+                }}
+                onClick={handlePrevQuestion}
+              >
+                {' '}
+                &larr; Back
+              </Link>
+            </Box>
+          )
+        }
 
         <Box border={'1px solid #ccc'} display={'inline-block'} padding={1}>
           <Typography variant="subtitle1">
@@ -63,12 +64,20 @@ const SurveyForm = () => {
               {/* create 3 option answer by MUI */}
               <Box>
                 {item.questionType === 'multipleChoice' && (
-                  <FormControlCustom answer={item.answer || []} />
+                  <FormControlCustom
+                    answer={item.answer || []}
+                    questionId={item.id}
+                  />
                 )}
                 {item.questionType === 'selectCheckBox' && (
-                  <MultipleSelectCheckmarks data={item.answer} />
+                  <MultipleSelectCheckmarks
+                    data={item.answer}
+                    questionId={item.id}
+                  />
                 )}
-                {item.questionType === 'textInput' && <TextInput />}
+                {item.questionType === 'textInput' && (
+                  <TextInput questionId={item.id} />
+                )}
               </Box>
               <Box display={'flex'} justifyContent={'center'} marginBottom={2}>
                 <ButtonCustom reverse onClick={handleNextQuestion}>

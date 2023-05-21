@@ -1,7 +1,11 @@
 import { Box, TextField } from '@mui/material';
-import React from 'react';
+import React, { FC } from 'react';
 
-const TextInput = () => {
+interface TextInputProps {
+  questionId: number;
+}
+
+const TextInput: FC<TextInputProps> = ({ questionId }) => {
   return (
     <Box
       component="form"

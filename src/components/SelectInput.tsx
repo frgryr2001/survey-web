@@ -18,20 +18,13 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
-export default function MultipleSelectCheckmarks({ data }: { data: string[] }) {
+export default function MultipleSelectCheckmarks({
+  data,
+  questionId,
+}: {
+  data: string[];
+  questionId: number;
+}) {
   const [selectChoice, setSelectChoice] = React.useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof selectChoice>) => {
